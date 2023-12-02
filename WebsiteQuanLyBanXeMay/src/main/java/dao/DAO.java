@@ -1939,6 +1939,30 @@ public class DAO {
         String ketQua = numberFormat.format(soStr);
         return ketQua;
     }
+    
+    public List<Double> totalMoneyDay_Current() {
+        String query = "SELECT  sum(tongTien) from HoaDon "
+        		+ "where DATEDIFF(day, dbo.func_ngayDauTienTrongTuan(GETDATE()), "
+        		+ "ngayThanhToan) >= 0 and "
+        		+ "DATEDIFF(day, dbo.func_ngayCuoiCungTrongTuan(GETDATE()), "
+        		+ "ngayThanhToan) <= 0 group by ngayThanhToan";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            
+            List<Double> dDoanhThuTuan = new ArrayList<Double>();
+            rs = ps.executeQuery();
+            while (rs.next()) 
+            {
+            	dDoanhThuTuan.add(rs.getDouble(1));
+            }
+            return dDoanhThuTuan;
+        } catch (Exception e) {
+        	e.printStackTrace();
+            System.out.println("Có lỗi");
+        }
+        return null;
+    }
 
    public static void main(String[] args) {
         DAO dao = new DAO();

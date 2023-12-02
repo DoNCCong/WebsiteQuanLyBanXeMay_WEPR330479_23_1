@@ -29,13 +29,19 @@ public class DoanhThuTheoThuControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         DAO dao = new DAO();
-        double totalMoney1 = dao.totalMoneyDay(1);
-        double totalMoney2 = dao.totalMoneyDay(2);
-        double totalMoney3 = dao.totalMoneyDay(3);
-        double totalMoney4 = dao.totalMoneyDay(4);
-        double totalMoney5 = dao.totalMoneyDay(5);
-        double totalMoney6 = dao.totalMoneyDay(6);
-        double totalMoney7 = dao.totalMoneyDay(7);
+        
+        List<Double> dDoanhThuTuan = dao.totalMoneyDay_Current();
+        
+        int n = dDoanhThuTuan.size();
+        
+        
+        double totalMoney1 = dDoanhThuTuan.get(0);
+        double totalMoney2 = dDoanhThuTuan.get(1);
+        double totalMoney3 = dDoanhThuTuan.get(2);
+        double totalMoney4 = dDoanhThuTuan.get(3);
+        double totalMoney5 = dDoanhThuTuan.get(4);
+        double totalMoney6 = dDoanhThuTuan.get(5);
+        double totalMoney7 = dDoanhThuTuan.get(6);
         request.setAttribute("totalMoney1", totalMoney1);
         request.setAttribute("totalMoney2", totalMoney2);
         request.setAttribute("totalMoney3", totalMoney3);
@@ -43,7 +49,11 @@ public class DoanhThuTheoThuControl extends HttpServlet {
         request.setAttribute("totalMoney5", totalMoney5);
         request.setAttribute("totalMoney6", totalMoney6);
         request.setAttribute("totalMoney7", totalMoney7);
+        
+        
+        
         request.getRequestDispatcher("DoanhThuTheoThu.jsp").forward(request, response);
+        
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -240,6 +240,20 @@ insert into HoaDon values
 ( 1, 89586006, CAST(N'2023-11-14T00:00:00.000' AS DateTime)),
 (1, 74389279, CAST(N'2023-11-15T00:00:00.000' AS DateTime))
 
+--delete from HoaDon
+insert into HoaDon values
+(1, 1, CAST(N'2023-12-03T00:00:00.000' AS DateTime)),
+(1, 2, CAST(N'2023-12-02T00:00:00.000' AS DateTime)),
+(1, 3, CAST(N'2023-12-01T00:00:00.000' AS DateTime)),
+(1, 4, CAST(N'2023-12-01T00:00:00.000' AS DateTime)),
+(1, 5, CAST(N'2023-11-30T00:00:00.000' AS DateTime)),
+(1, 6, CAST(N'2023-11-29T00:00:00.000' AS DateTime)),
+(1, 7, CAST(N'2023-11-28T00:00:00.000' AS DateTime)),
+(1, 8, CAST(N'2023-11-27T00:00:00.000' AS DateTime)),
+(1, 9, CAST(N'2023-11-26T00:00:00.000' AS DateTime)),
+(1, 10, CAST(N'2023-11-25T00:00:00.000' AS DateTime))
+
+
 ---------------------------------------------------------------------------------------------------------------------------------
 go
 -- Tạo trigger sau khi thêm dữ liệu vào bảng XeMay
@@ -261,3 +275,123 @@ BEGIN
         RETURN
     END
 END
+
+---------------------------------------------------------------------------------------------------------------------------------
+go
+select SUM(tongTien) from HoaDon
+where DATEPART(dw,[ngayThanhToan]) = 1
+Group by ngayThanhToan
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+-- hàm tìm CN đầu tuần
+go
+create function dbo.func_ngayDauTienTrongTuan(@ngay nvarchar(100))
+returns nvarchar(100)
+as
+begin
+	declare @temp1 int
+	declare @temp2 nvarchar(100)
+	declare @temp3 int
+	select @temp1 = datepart(weekday,@ngay)
+
+	if @temp1 = 1
+		begin
+			select @temp3 = 0
+		end
+	if @temp1 = 2
+		begin
+			select @temp3 = -1
+		end
+	if @temp1 = 3
+		begin
+			select @temp3 = -2
+		end
+	if @temp1 = 4
+		begin
+			select @temp3 = -3
+		end
+	if @temp1 = 5
+		begin
+			select @temp3 = -4
+		end
+	if @temp1 = 6
+		begin
+			select @temp3 = -5
+		end
+	if @temp1 = 7
+		begin
+			select @temp3 = -6
+		end
+	SELECT @temp2 = DATEADD(WEEKDAY,@temp3, @ngay);
+	return @temp2
+end
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+go
+SELECT *from HoaDon where DATEDIFF(day, dbo.func_ngayDauTienTrongTuan('2023-12-04'), ngayThanhToan) >= 0;
+
+go
+select *from HoaDon
+
+
+
+-- Hàm tìm T7 cuối tuần
+go
+create function dbo.func_ngayCuoiCungTrongTuan(@ngay nvarchar(100))
+returns nvarchar(100)
+as
+begin
+	declare @temp1 int
+	declare @temp2 nvarchar(100)
+	declare @temp3 int
+	select @temp1 = datepart(weekday,@ngay)
+	
+	if @temp1 = 7
+		begin
+			select @temp3 = 0
+		end
+	if @temp1 = 6
+		begin
+			select @temp3 = +1
+		end
+	if @temp1 = 5
+		begin
+			select @temp3 = +2
+		end
+	if @temp1 = 4
+		begin
+			select @temp3 = +3
+		end
+	if @temp1 = 3
+		begin
+			select @temp3 = +4
+		end
+	if @temp1 = 2
+		begin
+			select @temp3 = +5
+		end
+	if @temp1 = 1
+		begin
+			select @temp3 = +6
+		end
+	SELECT @temp2 = DATEADD(WEEKDAY,@temp3, @ngay);
+	return @temp2
+end
+
+
+go
+SELECT  sum(tongTien) from HoaDon where DATEDIFF(day, dbo.func_ngayDauTienTrongTuan('2023-12-04'), ngayThanhToan) >= 0
+and
+							DATEDIFF(day, dbo.func_ngayCuoiCungTrongTuan('2023-12-04'), ngayThanhToan) <= 0
+group by ngayThanhToan;
+
+
+
+go
+select *from HoaDon
+
