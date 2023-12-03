@@ -57,6 +57,9 @@ public class XuatExcelAccountControl extends HttpServlet {
         XSSFCell cell2;
         XSSFCell cell3;
         XSSFCell cell4;
+        XSSFCell cell5;
+        XSSFCell cell6;
+        XSSFCell cell7; 
         
         row=workSheet.createRow(0);
         cell0=row.createCell(0);
@@ -64,11 +67,17 @@ public class XuatExcelAccountControl extends HttpServlet {
         cell1=row.createCell(1);
         cell1.setCellValue("Username");
         cell2=row.createCell(2);
-        cell2.setCellValue("Là người bán hàng");
+        cell2.setCellValue("Password");
         cell3=row.createCell(3);
         cell3.setCellValue("Là Admin");
         cell4=row.createCell(4);
         cell4.setCellValue("Email");
+        cell5=row.createCell(5);
+        cell5.setCellValue("Họ tên");
+        cell6=row.createCell(6);
+        cell6.setCellValue("CCCD");
+        cell7=row.createCell(7);
+        cell7.setCellValue("Tổng chi tiêu (VNĐ)");
         
         int i=0;
         
@@ -84,7 +93,13 @@ public class XuatExcelAccountControl extends HttpServlet {
         		     cell3=row.createCell(3);
         		     cell3.setCellValue(acc.getIsAdmin());	
         		     cell4=row.createCell(4);
-        		     cell4.setCellValue(acc.getEmail());	
+        		     cell4.setCellValue(acc.getEmail());
+        		     cell5=row.createCell(5);
+        		     cell5.setCellValue(acc.getHoTen());
+        		     cell6=row.createCell(6);
+        		     cell6.setCellValue(acc.getcCCD());
+        		     cell7=row.createCell(7);
+        		     cell7.setCellValue(acc.getTongChiTieu());
         }
                
         workbook.write(file);

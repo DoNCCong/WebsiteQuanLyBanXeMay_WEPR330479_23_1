@@ -1,6 +1,8 @@
 package entity;
 
-public class XeMay{
+import dao.DAO;
+
+public class XeMay {
 	private int maXe;
     private String tenXe;
     private String hinhAnh1;
@@ -16,16 +18,21 @@ public class XeMay{
     private String hinhAnh3;
     private String hinhAnh4;
     private int soLuongCon;
+    private int soLuongDaBan;
+    
+    private String strGiaTien;
 
     public XeMay()
     {
-    	
+    	DAO dao = new DAO();
+		String kq= dao.chuyenDoiSo(String.format("%.0f",this.giaTien));
+		this.strGiaTien = kq;
     }
 
 	public XeMay(int maXe, String tenXe, String hinhAnh1, Double giaTien, String title, 
 			String gioiThieu, String khoiLuong, String daiRongCao, String dungTichXiLanh, 
 			String tiSoNen, String dungTichBinhXang, String hinhAnh2, String hinhAnh3, String hinhAnh4,
-			int soLuongCon) 
+			int soLuongCon, int soLuongDaBan) 
 	{		
 		this.setMaXe(maXe);
 		this.setTenXe(tenXe);
@@ -42,6 +49,21 @@ public class XeMay{
 		this.setHinhAnh3(hinhAnh3);
 		this.setHinhAnh4(hinhAnh4);
 		this.setSoLuongCon(soLuongCon);
+		this.setSoLuongDaBan(soLuongDaBan);
+		
+		DAO dao = new DAO();
+		String kq= dao.chuyenDoiSo(String.format("%.0f",this.giaTien));
+		this.strGiaTien = kq;
+	}
+	
+	public XeMay(int maXe, int soLuongDaBan) 
+	{		
+		this.setMaXe(maXe);
+		this.setSoLuongDaBan(soLuongDaBan);
+		
+//		DAO dao = new DAO();
+//		String kq= dao.chuyenDoiSo(String.format("%.0f",this.giaTien));
+//		this.strGiaTien = kq;
 	}
 
 
@@ -192,5 +214,21 @@ public class XeMay{
 
 	public void setSoLuongCon(int soLuongCon) {
 		this.soLuongCon = soLuongCon;
+	}
+
+	public int getSoLuongDaBan() {
+		return soLuongDaBan;
+	}
+
+	public void setSoLuongDaBan(int soLuongDaBan) {
+		this.soLuongDaBan = soLuongDaBan;
+	}
+
+	public String getStrGiaTien() {
+		return strGiaTien;
+	}
+
+	public void setStrGiaTien(String strGiaTien) {
+		this.strGiaTien = strGiaTien;
 	}
 }

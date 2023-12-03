@@ -9,8 +9,8 @@ import context.DBContext;
 import entity.Account;
 import entity.GioHang;
 import entity.FeedBack;
-import entity.SoLuongXeDaBan;
-import entity.TongChiTieuMuaHang;
+//import entity.SoLuongXeDaBan;
+//import entity.TongChiTieuMuaHang;
 import entity.Supplier;
 //import entity.Account;
 import entity.DanhMuc;
@@ -21,10 +21,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class DAO {
@@ -55,7 +57,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -64,18 +67,18 @@ public class DAO {
         return list;
     }
     
-    public List<SoLuongXeDaBan> getTop10SanPhamBanChay() {
-        List<SoLuongXeDaBan> list = new ArrayList<>();
+    public List<XeMay> getTop10SanPhamBanChay() {
+        List<XeMay> list = new ArrayList<>();
         String query = "select top(10) *\r\n"
-        		+ "from SoLuongXeDaBan\r\n"
+        		+ "from XeMay\r\n"
         		+ "order by soLuongDaBan desc";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new SoLuongXeDaBan(rs.getInt(1),
-                        rs.getInt(2)
+                list.add(new XeMay(rs.getInt(1),
+                        rs.getInt(17)
                   ));
             }
         } catch (Exception e) {
@@ -121,41 +124,41 @@ public class DAO {
         return list;
     }
     
-    public int countAllProductBySellID(int sell_ID) {
-        String query = "select soLuongDaBan from SoLuongXeDaBan where maXe=?";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, sell_ID);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-               return rs.getInt(1);
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return 0;
-    }
+//    public int countAllProductBySellID(int sell_ID) {
+//        String query = "select soLuongDaBan from SoLuongXeDaBan where maXe=?";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            ps.setInt(1, sell_ID);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//               return rs.getInt(1);
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return 0;
+//    }
     
-    public int getSellIDByProductID(int productID) {
-        String query = "select sell_ID\r\n"
-        		+ "from Product\r\n"
-        		+ "where [id]=?";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, productID);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-               return rs.getInt(1);
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return 0;
-    }
+//    public int getSellIDByProductID(int productID) {
+//        String query = "select sell_ID\r\n"
+//        		+ "from Product\r\n"
+//        		+ "where [id]=?";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            ps.setInt(1, productID);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//               return rs.getInt(1);
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return 0;
+//    }
     
     public double totalMoneyDay(int day) {
         String query = "select \r\n"
@@ -275,7 +278,10 @@ public class DAO {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                		rs.getString(5)));
+                		rs.getString(5),
+                		rs.getString(6),
+                		rs.getString(7),
+                		rs.getDouble(8)));
             }
         } catch (Exception e) {
         	//e.printStackTrace();
@@ -284,40 +290,40 @@ public class DAO {
         return list;
     }
     
-    public List<Supplier> getAllSupplier() {
-        List<Supplier> list = new ArrayList<>();
-        String query = "select * from Supplier";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Supplier(rs.getInt(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                		rs.getInt(6)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
+//    public List<Supplier> getAllSupplier() {
+//        List<Supplier> list = new ArrayList<>();
+//        String query = "select * from Supplier";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                list.add(new Supplier(rs.getInt(1),
+//                        rs.getString(2),
+//                        rs.getString(3),
+//                        rs.getString(4),
+//                        rs.getString(5),
+//                		rs.getInt(6)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
    
-    public List<TongChiTieuMuaHang> getTop5KhachHang() {
-        List<TongChiTieuMuaHang> list = new ArrayList<>();
+    public List<Account> getTop5KhachHang() {
+        List<Account> list = new ArrayList<>();
         String query = "select top(5) *\r\n"
-        		+ "from TongChiTieuMuaHang\r\n"
+        		+ "from Account\r\n"
         		+ "order by tongChiTieu desc";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new TongChiTieuMuaHang(rs.getInt(1),
-                        rs.getDouble(2)));
+                list.add(new Account(rs.getInt(1),
+                        rs.getDouble(8)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -326,25 +332,25 @@ public class DAO {
         return list;
     }
     
-    public List<TongChiTieuMuaHang> getTop5NhanVien() {
-        List<TongChiTieuMuaHang> list = new ArrayList<>();
-        String query = "select top(5) *\r\n"
-        		+ "from TongChiTieuBanHang\r\n"
-        		+ "order by TongBanHang desc";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new TongChiTieuMuaHang(rs.getInt(1),
-                        rs.getDouble(2)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
+//    public List<Account> getTop5NhanVien() {
+//        List<Account> list = new ArrayList<>();
+//        String query = "select top(5) *\r\n"
+//        		+ "from TongChiTieuBanHang\r\n"
+//        		+ "order by TongBanHang desc";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//                list.add(new TongChiTieuMuaHang(rs.getInt(1),
+//                        rs.getDouble(2)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
 
     public List<XeMay> getTop3() {
         List<XeMay> list = new ArrayList<>();
@@ -368,7 +374,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -404,7 +411,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -440,7 +448,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -470,7 +479,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -505,7 +515,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -538,7 +549,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -575,7 +587,8 @@ public class DAO {
                          rs.getString(13),
                          rs.getString(14),
                          rs.getString(15),
-                         rs.getInt(16)));
+                         rs.getInt(16),
+                         rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -610,7 +623,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -643,7 +657,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -697,7 +712,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -729,7 +745,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -738,133 +755,134 @@ public class DAO {
         return list;
     }
     
-    public List<XeMay> searchColorWhite() {
-        List<XeMay> list = new ArrayList<>();
-        String query = "select * from Product\r\n"
-        		+ "where color = 'White'";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-            	 list.add(new XeMay(rs.getInt(1),
-                         rs.getString(2),
-                         rs.getString(3),
-                         rs.getDouble(4),
-                         rs.getString(5),
-                         rs.getString(6),
-                         rs.getString(8),
-                         rs.getString(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14),
-                         rs.getString(15),
-                         rs.getInt(16)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
+//    public List<XeMay> searchColorWhite() {
+//        List<XeMay> list = new ArrayList<>();
+//        String query = "select * from Product\r\n"
+//        		+ "where color = 'White'";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//            	 list.add(new XeMay(rs.getInt(1),
+//                         rs.getString(2),
+//                         rs.getString(3),
+//                         rs.getDouble(4),
+//                         rs.getString(5),
+//                         rs.getString(6),
+//                         rs.getString(8),
+//                         rs.getString(9),
+//                         rs.getString(10),
+//                         rs.getString(11),
+//                         rs.getString(12),
+//                         rs.getString(13),
+//                         rs.getString(14),
+//                         rs.getString(15),
+//                         rs.getInt(16)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
+//    
+//    public List<XeMay> searchColorGray() {
+//        List<XeMay> list = new ArrayList<>();
+//        String query = "select * from Product\r\n"
+//        		+ "where color = 'Gray'";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//            	 list.add(new XeMay(rs.getInt(1),
+//                         rs.getString(2),
+//                         rs.getString(3),
+//                         rs.getDouble(4),
+//                         rs.getString(5),
+//                         rs.getString(6),
+//                         rs.getString(8),
+//                         rs.getString(9),
+//                         rs.getString(10),
+//                         rs.getString(11),
+//                         rs.getString(12),
+//                         rs.getString(13),
+//                         rs.getString(14),
+//                         rs.getString(15),
+//                         rs.getInt(16)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
+//    
+//    public List<XeMay> searchColorBlack() {
+//        List<XeMay> list = new ArrayList<>();
+//        String query = "select * from Product\r\n"
+//        		+ "where color = 'Black'";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//            	 list.add(new XeMay(rs.getInt(1),
+//                         rs.getString(2),
+//                         rs.getString(3),
+//                         rs.getDouble(4),
+//                         rs.getString(5),
+//                         rs.getString(6),
+//                         rs.getString(8),
+//                         rs.getString(9),
+//                         rs.getString(10),
+//                         rs.getString(11),
+//                         rs.getString(12),
+//                         rs.getString(13),
+//                         rs.getString(14),
+//                         rs.getString(15),
+//                         rs.getInt(16)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
+//    
+//    public List<XeMay> searchColorYellow() {
+//        List<XeMay> list = new ArrayList<>();
+//        String query = "select * from Product\r\n"
+//        		+ "where color = 'Yellow'";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//            while (rs.next()) {
+//            	 list.add(new XeMay(rs.getInt(1),
+//                         rs.getString(2),
+//                         rs.getString(3),
+//                         rs.getDouble(4),
+//                         rs.getString(5),
+//                         rs.getString(6),
+//                         rs.getString(8),
+//                         rs.getString(9),
+//                         rs.getString(10),
+//                         rs.getString(11),
+//                         rs.getString(12),
+//                         rs.getString(13),
+//                         rs.getString(14),
+//                         rs.getString(15),
+//                         rs.getInt(16)));
+//            }
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//        return list;
+//    }
     
-    public List<XeMay> searchColorGray() {
-        List<XeMay> list = new ArrayList<>();
-        String query = "select * from Product\r\n"
-        		+ "where color = 'Gray'";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-            	 list.add(new XeMay(rs.getInt(1),
-                         rs.getString(2),
-                         rs.getString(3),
-                         rs.getDouble(4),
-                         rs.getString(5),
-                         rs.getString(6),
-                         rs.getString(8),
-                         rs.getString(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14),
-                         rs.getString(15),
-                         rs.getInt(16)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
-    
-    public List<XeMay> searchColorBlack() {
-        List<XeMay> list = new ArrayList<>();
-        String query = "select * from Product\r\n"
-        		+ "where color = 'Black'";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-            	 list.add(new XeMay(rs.getInt(1),
-                         rs.getString(2),
-                         rs.getString(3),
-                         rs.getDouble(4),
-                         rs.getString(5),
-                         rs.getString(6),
-                         rs.getString(8),
-                         rs.getString(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14),
-                         rs.getString(15),
-                         rs.getInt(16)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
-    
-    public List<XeMay> searchColorYellow() {
-        List<XeMay> list = new ArrayList<>();
-        String query = "select * from Product\r\n"
-        		+ "where color = 'Yellow'";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-            	 list.add(new XeMay(rs.getInt(1),
-                         rs.getString(2),
-                         rs.getString(3),
-                         rs.getDouble(4),
-                         rs.getString(5),
-                         rs.getString(6),
-                         rs.getString(8),
-                         rs.getString(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14),
-                         rs.getString(15),
-                         rs.getInt(16)));
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-        return list;
-    }
     public List<XeMay> searchBygiaTienMinToMax(String giaTienMin,String giaTienMax) {
         List<XeMay> list = new ArrayList<>();
         String query = "select * from XeMay\r\n"
@@ -890,7 +908,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -922,7 +941,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -956,7 +976,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1012,7 +1033,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16));
+                        rs.getInt(16),
+                        rs.getInt(17));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1084,9 +1106,9 @@ public class DAO {
         return 0;
     }
     
-    public TongChiTieuMuaHang checkTongChiTieuMuaHangExist(int maAccount) {
+    public Account checkTongChiTieuMuaHangExist(int maAccount) {
 
-        String query = "select * from TongChiTieuMuaHang where [maAccount]=?";
+        String query = "select * from Account where [maAccount]=?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -1094,8 +1116,8 @@ public class DAO {
            
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new TongChiTieuMuaHang(rs.getInt(1),
-                        rs.getDouble(2));
+                return new Account(rs.getInt(1),
+                        rs.getDouble(8));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1104,9 +1126,9 @@ public class DAO {
        return null;
     }
     
-    public SoLuongXeDaBan checkSoLuongXeDaBanExist(int maXe) {
+    public XeMay checkSoLuongXeDaBanExist(int maXe) {
 
-        String query = "select * from SoLuongXeDaBan where maXe = ?";
+        String query = "select * from XeMay where maXe = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -1114,8 +1136,8 @@ public class DAO {
            
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new SoLuongXeDaBan(rs.getInt(1),
-                        rs.getInt(2)
+                return new XeMay(rs.getInt(1),
+                        rs.getInt(17)
                        );
             }
         } catch (Exception e) {
@@ -1169,7 +1191,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16));
+                        rs.getInt(16),
+                        rs.getInt(17));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1200,7 +1223,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1233,7 +1257,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1266,7 +1291,8 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16)));
+                        rs.getInt(16),
+                        rs.getInt(17)));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1290,7 +1316,10 @@ public class DAO {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                		rs.getString(5));
+                		rs.getString(5),
+                		rs.getString(6),
+                		rs.getString(7),
+                		rs.getDouble(8));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1312,7 +1341,10 @@ public class DAO {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                		rs.getString(5));
+                		rs.getString(5),
+                		rs.getString(6),
+                		rs.getString(7),
+                		rs.getDouble(8));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1334,7 +1366,10 @@ public class DAO {
                         rs.getString(2),
                         rs.getString(3),
                         rs.getInt(4),
-                		rs.getString(5));
+                		rs.getString(5),
+                		rs.getString(6),
+                		rs.getString(7),
+                		rs.getDouble(8));
             }
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1367,15 +1402,17 @@ public class DAO {
         return null;
     }
 
-    public void singup(String user, String pass, String email) {
+    public void singup(String user, String pass, String email, String hoTen, String cCCD) {
         String query = "insert into Account\n"
-                + "values(?,?,0,?)";
+                + "values(?,?,0,?,?,?,0)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             ps.setString(1, user);
             ps.setString(2, pass);
             ps.setString(3, email);
+            ps.setString(4, hoTen);
+            ps.setString(5, cCCD);
             ps.executeUpdate();
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1409,8 +1446,8 @@ public class DAO {
         }
     }
     
-    public void deleteTongChiTieuBanHangByUserID(String id) {
-        String query = "delete from TongChiTieuMuaHang\n"
+    public void deleteTongChiTieuMuaHangByUserID(String id) {
+        String query = "delete from Account\n"
                 + "where [maAccount] = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1483,7 +1520,7 @@ public class DAO {
     }
     
     public void deleteSoLuongDaBanByProductID(String productID) {
-        String query = "delete from SoLuongXeDaBan where [maXe]=?";
+        String query = "delete from XeMay where [maXe]=?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -1565,15 +1602,16 @@ public class DAO {
             String title, String gioiThieu, String maDanhMuc, String khoiLuong, 
             String daiRongCao, String dungTichXiLanh, String tiSoNen, 
             String dungTichBinhXang, String hinhAnh2, String hinhAnh3, String hinhAnh4, 
-            String soLuongCon) {
+            String soLuongCon, String soLuongDaBan) {
         String query = "insert XeMay([tenXe],[hinhAnh1],[giaTien],[title],\r\n"
         		+ "[gioiThieu],[maDanhMuc],[khoiLuong],[daiRongCao],[dungTichXiLanh],\r\n"
         		+ "[tiSoNen],[dungTichBinhXang],[hinhAnh2],[hinhAnh3],[hinhAnh4],"
-        		+ "[soLuongCon])\r\n"
+        		+ "[soLuongCon],[soLuongDaBan])\r\n"
         		+ "values(N'"+tenXe+"','"+hinhAnh1+"','"+giaTien+"',N'"+title+"',N'"+
         		gioiThieu+"','"+maDanhMuc+"',N'"+khoiLuong+"',N'"+daiRongCao
         		+"',N'"+dungTichXiLanh+"',N'"+tiSoNen+"',N'"+dungTichBinhXang+"','"+
-        		hinhAnh2+"','"+hinhAnh3+"','"+hinhAnh4+"','"+soLuongCon+"')";
+        		hinhAnh2+"','"+hinhAnh3+"','"+hinhAnh4+"','"+soLuongCon+"','"+
+        		soLuongDaBan+"')";
         try {
         	
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1587,9 +1625,11 @@ public class DAO {
         }
     }
     
-    public void insertAccount(String user, String pass, String isAdmin, String email) {
-        String query = "insert Account([username], password, isAdmin, email)\r\n"
-        		+ "values(?,?,?,?)";
+    public void insertAccount(String user, String pass, String isAdmin, String email, 
+    		String hoTen, String cCCD) {
+        String query = "insert Account([username], password, isAdmin, email, hoTen, cCCD, "
+        		+ "tongChiTieu)\r\n"
+        		+ "values(?,?,?,?,?,?,0)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
@@ -1597,6 +1637,8 @@ public class DAO {
             ps.setString(2, pass);
             ps.setString(3, isAdmin);
             ps.setString(4, email);
+            ps.setString(5, hoTen);
+            ps.setString(6, cCCD);
             ps.executeUpdate();
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1604,55 +1646,55 @@ public class DAO {
         }
     }
     
-    public void insertTongChiTieuMuaHang(int maAccount, double tongChiTieu) {
-        String query = "insert TongChiTieuMuaHang(maAccount,TongChiTieu)\r\n"
-        		+ "values(?,?)";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, maAccount);
-            ps.setDouble(2, tongChiTieu);;
-        
-            ps.executeUpdate();
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-    }
+//    public void insertTongChiTieuMuaHang(int maAccount, double tongChiTieu) {
+//        String query = "insert TongChiTieuMuaHang(maAccount,TongChiTieu)\r\n"
+//        		+ "values(?,?)";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            ps.setInt(1, maAccount);
+//            ps.setDouble(2, tongChiTieu);;
+//        
+//            ps.executeUpdate();
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//    }
     
-    public void insertSoLuongDaBan(int maXe, int soLuongDaBan) {
-        String query = "insert SoLuongXeDaBan(maXe,soLuongDaBan)\r\n"
-        		+ "values(?,?)";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, maXe);
-            ps.setInt(2, soLuongDaBan);
-           
-            ps.executeUpdate();
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-    }
+//    public void insertSoLuongDaBan(int maXe, int soLuongDaBan) {
+//        String query = "insert SoLuongXeDaBan(maXe,soLuongDaBan)\r\n"
+//        		+ "values(?,?)";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            ps.setInt(1, maXe);
+//            ps.setInt(2, soLuongDaBan);
+//           
+//            ps.executeUpdate();
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//    }
     
-    public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier, String cateID) {
-        String query = "insert Supplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier, cateID) \r\n"
-        		+ "values(?,?,?,?,?)";
-        try {
-            conn = new DBContext().getConnection();//mo ket noi voi sql
-            ps = conn.prepareStatement(query);
-            ps.setString(1, nameSupplier);
-            ps.setString(2, phoneSupplier);
-            ps.setString(3, emailSupplier);
-            ps.setString(4, addressSupplier);
-            ps.setString(5, cateID);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.out.println("Có lỗi");
-        }
-    }
+//    public void insertSupplier(String nameSupplier, String phoneSupplier, String emailSupplier, String addressSupplier, String cateID) {
+//        String query = "insert Supplier(nameSupplier, phoneSupplier, emailSupplier, addressSupplier, cateID) \r\n"
+//        		+ "values(?,?,?,?,?)";
+//        try {
+//            conn = new DBContext().getConnection();//mo ket noi voi sql
+//            ps = conn.prepareStatement(query);
+//            ps.setString(1, nameSupplier);
+//            ps.setString(2, phoneSupplier);
+//            ps.setString(3, emailSupplier);
+//            ps.setString(4, addressSupplier);
+//            ps.setString(5, cateID);
+//            ps.executeUpdate();
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//            System.out.println("Có lỗi");
+//        }
+//    }
     
     private static java.sql.Date getCurrentDate() {
         java.util.Date today = new java.util.Date();
@@ -1718,7 +1760,7 @@ public class DAO {
     		String pkhoiLuong, String pdaixRongxCao, 
     		String pdungTichXiLanh, String ptiSoNen, String pdungTichBinhXang, 
     		String phinhAnh2, String phinhAnh3, String phinhAnh4, String psoLuongCon, 
-    		String pmaXe) {
+    		String psoLuongDaBan, String pmaXe) {
         String query = "update XeMay\r\n"
         		+ "set [tenXe] = ?,\r\n"
         		+ "[hinhAnh1] = ?,\r\n"
@@ -1735,6 +1777,7 @@ public class DAO {
         		+ "hinhAnh3 =?,\r\n"
         		+ "hinhAnh4 =?,\r\n"
         		+ "soLuongCon =?\r\n"
+        		+ "soLuongDaBan =?\r\n"
         		+ "where [maXe] = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1754,7 +1797,8 @@ public class DAO {
             ps.setString(13, phinhAnh3);
             ps.setString(14, phinhAnh4);
             ps.setString(15, psoLuongCon);
-            ps.setString(16, pmaXe);
+            ps.setString(16, psoLuongDaBan);
+            ps.setString(17, pmaXe);
             ps.executeUpdate();
            
         } catch (Exception e) {
@@ -1764,10 +1808,13 @@ public class DAO {
     }
     
     
-    public void editProfile(String username, String password, String email, int maAccount) {
+    public void editProfile(String username, String password, String email, 
+    		String hoTen, String cCCD, int maAccount) {
         String query = "update Account set [username]=?,\r\n"
         		+ "[password]=?,\r\n"
         		+ "[email]=?\r\n"
+        		+ "[hoTen]=?\r\n"
+        		+ "[cCCD]=?\r\n"
         		+ "where [maAccount] = ?";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1775,7 +1822,9 @@ public class DAO {
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, email);
-            ps.setInt(4, maAccount);
+            ps.setString(4, hoTen);
+            ps.setString(5, cCCD);
+            ps.setInt(6, maAccount);
             ps.executeUpdate();
         } catch (Exception e) {
         	e.printStackTrace();
@@ -1870,13 +1919,25 @@ public class DAO {
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getInt(16));
+                        rs.getInt(16),
+                        rs.getInt(17));
             }
         } catch (Exception e) {
         	e.printStackTrace();
             System.out.println("Có lỗi");
         }
         return null;
+    }
+    
+    public String chuyenDoiSo(String str)
+    {
+    	// Chuyển chuỗi thành số
+    	long soStr = Long.parseLong(str);
+    	
+    	// Định dạng số với dấu phân cách hàng nghìn
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
+        String ketQua = numberFormat.format(soStr);
+        return ketQua;
     }
 
    public static void main(String[] args) {

@@ -74,6 +74,10 @@
                                     <input value="${detail.soLuongCon}" name="soLuongCon" type="text" class="form-control" >
                                 </div>
                                 <div class="form-group">
+                                    <label>Số Lượng Đã Bán</label>
+                                    <input value="${detail.soLuongDaBan}" name="soLuongDaBan" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
                                     <label>Giá Tiền</label>
                                     <input min = "1" value="${String.format("%.0f",detail.giaTien) }" name="giaTien" type="text" class="form-control" >
                                 </div>

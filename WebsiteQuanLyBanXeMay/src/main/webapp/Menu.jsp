@@ -43,10 +43,10 @@
 	                    <li class="nav-item">
 	                      <c:if test="${sessionScope.acc.username != \"admin\" }">
 	                    	
-	                        	<a class="nav-link" href="#">XIN CHÀO, ${sessionScope.acc.username}</a>
+	                        	<a class="nav-link" href="#">XIN CHÀO, ${sessionScope.acc.hoTen}</a>
 	                      </c:if>
 	                      <c:if test="${sessionScope.acc.username == \"admin\" }">
-	                        	<a class="nav-link" href="admin">XIN CHÀO, ${sessionScope.acc.username}</a>
+	                        	<a class="nav-link-admin" href="admin" style="color:yellow">Quản Lý Cửa Hàng</a>
 	                     </c:if>  
 	                    </li>
 	                </c:if>

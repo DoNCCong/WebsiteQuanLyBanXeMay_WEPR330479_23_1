@@ -17,8 +17,8 @@ import entity.Email;
 import entity.EmailUtils;
 import entity.GioHang;
 import entity.XeMay;
-import entity.SoLuongXeDaBan;
-import entity.TongChiTieuMuaHang;
+//import entity.SoLuongXeDaBan;
+//import entity.TongChiTieuMuaHang;
 
 /**
  * Servlet implementation class ForgotPasswordControl
@@ -69,27 +69,34 @@ public class OrderControl extends HttpServlet {
 	        for(GioHang c : list) {
 				for(XeMay p : list2) {
 					if(c.getMaXe()==p.getMaXe()) {
-						SoLuongXeDaBan s = dao.checkSoLuongXeDaBanExist(p.getMaXe());
-						if(s == null) {
-							dao.insertSoLuongDaBan(p.getMaXe(), c.getSoLuong());
-						}
-						else {
-							dao.editSoLuongDaBan(p.getMaXe(), c.getSoLuong());
-						}	
+						
+						dao.editSoLuongDaBan(p.getMaXe(), c.getSoLuong());
+						
+//						XeMay s = dao.checkSoLuongXeDaBanExist(p.getMaXe());
+//						if(s == null) {
+//							dao.insertSoLuongDaBan(p.getMaXe(), c.getSoLuong());
+//						}
+//						else {
+//							dao.editSoLuongDaBan(p.getMaXe(), c.getSoLuong());
+//						}	
 					}
 				}
 			}
 	        
 	        dao.insertHoaDon(maAccount, totalMoneyVAT);
-	        TongChiTieuMuaHang t = dao.checkTongChiTieuMuaHangExist(maAccount);
-	        if(t==null) {
-	        	dao.insertTongChiTieuMuaHang(maAccount,totalMoneyVAT);
-	        }
-	        else {
-	        	dao.editTongChiTieu(maAccount, totalMoneyVAT);
-	        }
 	        
-	    request.setAttribute("hoTen", a.getUsername());    
+	        dao.editTongChiTieu(maAccount, totalMoneyVAT);
+	        
+//	        Account t = dao.checkTongChiTieuMuaHangExist(maAccount);
+//	        if(t==null) {
+//	        	dao.insertTongChiTieuMuaHang(maAccount,totalMoneyVAT);
+//	        }
+//	        else {
+//	        	dao.editTongChiTieu(maAccount, totalMoneyVAT);
+//	        }
+	        
+	    request.setAttribute("hoTen", a.getHoTen());  
+	    request.setAttribute("cCCD", a.getcCCD()); 
 	    request.setAttribute("email", a.getEmail());
 	        
 		request.getRequestDispatcher("DatHang.jsp").forward(request, response);
@@ -103,8 +110,9 @@ public class OrderControl extends HttpServlet {
 		try {
 			String emailAddress = request.getParameter("email");
 			String name = request.getParameter("name");
+			String cCCD = request.getParameter("cCCD");
 			String phoneNumber = request.getParameter("phoneNumber");
-			String deliveryAddress = request.getParameter("deliveryAddress");
+//			String deliveryAddress = request.getParameter("deliveryAddress");
 			
 			 HttpSession session = request.getSession();
 		        Account a = (Account) session.getAttribute("acc");
@@ -138,6 +146,7 @@ public class OrderControl extends HttpServlet {
 				sb.append("Gửi đến ").append(name).append(",<br>");
 				sb.append("Bạn vừa đặt mua Xe thành công từ Cửa Hàng Xe Máy SPKT. <br> ");
 				sb.append("Địa chỉ nhận Xe của bạn là: Số 1 Võ Văn Ngân (Địa Chỉ Cửa Hàng) <b>").append(" </b> <br>");
+				sb.append("Mã CCCD Để Xác Nhận Của Bạn Là: <b>").append(cCCD).append(" </b> <br>");
 				sb.append("Số Điện Thoại Để Xác Nhận Của Bạn Là: <b>").append(phoneNumber).append(" </b> <br>");
 				sb.append("Các Xe Máy Bạn Đã Đặt Mua Là: <br>");
 				for(GioHang c : list) {

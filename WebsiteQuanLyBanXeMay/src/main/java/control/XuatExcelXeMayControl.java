@@ -77,6 +77,7 @@ public class XuatExcelXeMayControl extends HttpServlet {
         XSSFCell cell14;
         XSSFCell cell15;
         XSSFCell cell16;
+        XSSFCell cell17;
         
         row=workSheet.createRow(0);
         cell0=row.createCell(0);
@@ -109,6 +110,8 @@ public class XuatExcelXeMayControl extends HttpServlet {
         cell13.setCellValue("Hình Ảnh 4");
         cell14=row.createCell(14);
         cell14.setCellValue("Số Lượng Còn Lại");
+        cell15=row.createCell(15);
+        cell15.setCellValue("Số Lượng Đã Bán");
         
         int i=0;
         
@@ -145,6 +148,8 @@ public class XuatExcelXeMayControl extends HttpServlet {
         		     cell13.setCellValue(pro.getHinhAnh4());
         		     cell14=row.createCell(14);
         		     cell14.setCellValue(pro.getSoLuongCon());
+        		     cell15=row.createCell(15);
+        		     cell15.setCellValue(pro.getSoLuongDaBan());
         }
                
         workbook.write(file);

@@ -22,22 +22,16 @@
         </a>
        
          <a href="managerAccount" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px;height:50px; box-shadow: 10px 2px #10f51c;" onmouseover="this.style.color='#10f51c'" onmouseout="this.style.color='#49494a';">
-          <i class="fas fa-user-circle fa-fw me-3"></i><span>Quản lý tài khoản</span>
+          <i class="fas fa-user-circle fa-fw me-3"></i><span>Quản lý Tài Khoản</span>
         </a>
         <a href="manager" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px;height:50px; box-shadow: 10px 2px #daea16;" onmouseover="this.style.color='#daea16'" onmouseout="this.style.color='#49494a';">
           <i class="fas fa-shoe-prints fa-fw me-3"></i><span>Quản lý Xe Máy</span>
         </a>
-        <a href="top10" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px;height:50px; box-shadow: 10px 2px #ef730f;" onmouseover="this.style.color='#ef730f'" onmouseout="this.style.color='#49494a';">
-          <i class="fas fa-shoe-prints fa-fw me-3"></i><span>Top 10 sản phẩm</span>
-        </a>
-        <a href="top5khachhang" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px;height:50px; box-shadow: 10px 2px #8411f4;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#49494a';">
-          <i class="fas fa-user-circle fa-fw me-3"></i><span>Top 5 khách hàng</span>
-        </a>
-         <div style="margin-top:70px">
-         	<hr style="height:4px;width:100%;border-width:0;color:gray;background-color:black;" >
-         	<span style="margin-left:90px;font-size:24px">Admin</span>
-         	<img src="./images/admin.svg" width="60" height="60" style="margin-bottom: 0px;margin-left:90px"></img>
-         </div>
+<!--          <div style="margin-top:70px"> -->
+<!--          	<hr style="height:4px;width:100%;border-width:0;color:gray;background-color:black;" > -->
+<!--          	<span style="margin-left:90px;font-size:24px">Admin</span> -->
+<!--          	<img src="./images/admin.svg" width="60" height="60" style="margin-bottom: 0px;margin-left:90px"></img> -->
+<!--          </div> -->
       </div>
     </div>
   </nav>

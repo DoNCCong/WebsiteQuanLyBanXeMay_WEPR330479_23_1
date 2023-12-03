@@ -41,9 +41,11 @@ public class EditProfileControl extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        String hoTen = request.getParameter("hoTen");
+        String cCCD = request.getParameter("cCCD");
         DAO dao = new DAO();
 
-        dao.editProfile(username, password, email, maAccount);
+        dao.editProfile(username, password, email, hoTen, cCCD, maAccount);
         
         request.setAttribute("mess", "Cập Nhật Tài Khoản Thành Công! Hãy Đăng Nhập Bằng Tài Khoản Mới!");
 

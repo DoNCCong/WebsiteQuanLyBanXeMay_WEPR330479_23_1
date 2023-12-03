@@ -35,6 +35,9 @@ public class SignUpControl extends HttpServlet {
         String password = request.getParameter("pass");
         String re_pass = request.getParameter("repass");
         String email = request.getParameter("email");
+        String hoTen = request.getParameter("hoTen");
+        String cCCD = request.getParameter("cCCD");
+        
         if(!password.equals(re_pass)){
             response.sendRedirect("Login.jsp");
         }else{
@@ -42,7 +45,7 @@ public class SignUpControl extends HttpServlet {
             Account a = dao.checkAccountExist(username);
             if(a == null){
                 //dc signup
-                dao.singup(username, password, email);
+                dao.singup(username, password, email, hoTen, cCCD);
                 response.sendRedirect("login");
             }else{
                 //day ve trang login.jsp

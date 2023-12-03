@@ -158,7 +158,7 @@
                 <div class="d-flex flex-row">
                   <div class="align-self-center">
                     <!--  <h2 class="h1 mb-0 me-4">$${sumAllInvoice }</h2>-->
-                    <h4>Tổng Doanh Thu Tuần</h4>
+                    <h4>Tổng Doanh Thu Đến Tuần Hiện Tại</h4>
                   </div>
                   <div>
                     <h2 class="h1 mb-0 me-4">${totalMoney} VNĐ</h2>

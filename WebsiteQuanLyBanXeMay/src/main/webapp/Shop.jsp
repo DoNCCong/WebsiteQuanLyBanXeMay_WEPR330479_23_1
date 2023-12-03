@@ -244,7 +244,7 @@
                   <div class="text-center pt-4">
 
                     <h5>${o.tenXe }</h5>
-                    <p><span class="mr-1"><strong>${String.format("%.0f",o.giaTien)} VNĐ</strong></span></p>
+                    <p><span class="mr-1"><strong>${o.strGiaTien)} VNĐ</strong></span></p>
 
                   </div>
 

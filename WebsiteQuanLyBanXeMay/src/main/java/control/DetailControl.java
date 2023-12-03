@@ -49,7 +49,12 @@ public class DetailControl extends HttpServlet {
         List<Account> listAllAcount = dao.getAllAccount();
         
         XeMay last = dao.getLast();
-
+        
+        Double dgiaTienGiam = p.getGiaTien()*0.9;
+        
+        String strGiaTienGiam = dao.chuyenDoiSo(String.format("%.0f", dgiaTienGiam));
+        request.setAttribute("giaTienGiam", strGiaTienGiam);
+        
         request.setAttribute("detail", p);
         request.setAttribute("listRelatedProduct", listRelatedXeMay);
         request.setAttribute("listAllReview", listAllFeedBack);

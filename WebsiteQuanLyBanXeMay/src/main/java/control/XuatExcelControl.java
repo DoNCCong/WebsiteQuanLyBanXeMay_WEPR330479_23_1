@@ -69,7 +69,7 @@ public class XuatExcelControl extends HttpServlet {
         cell1=row.createCell(1);
         cell1.setCellValue("Account");
         cell2=row.createCell(2);
-        cell2.setCellValue("Tổng Giá($)");
+        cell2.setCellValue("Tổng Giá (VNĐ)");
         cell3=row.createCell(3);
         cell3.setCellValue("Ngày Xuất");
         

@@ -50,7 +50,9 @@
                 <input name="user" type="text" id="user-name" class="form-control" placeholder="Tên Đăng Nhập" required="" autofocus="">
                 <input name="pass" type="password" id="user-pass" class="form-control" placeholder="Mật Khẩu" required autofocus="">
                 <input name="repass" type="password" id="user-repeatpass" class="form-control" placeholder="Nhập Lại Mật Khẩu" required autofocus="">
-				 <input name="email" type="email" id="email" class="form-control" placeholder="Email" required="" autofocus="">
+				<input name="email" type="email" id="email" class="form-control" placeholder="Email" required="" autofocus="">
+				<input name="hoTen" type="text" id="user-name" class="form-control" placeholder="Họ Tên" required="" autofocus="">
+				<input name="cCCD" type="text" id="user-name" class="form-control" placeholder="CCCD" required="" autofocus="">
                 <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> ĐĂNG KÝ</button>
                 <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> TRỞ VỀ</a>
             </form>

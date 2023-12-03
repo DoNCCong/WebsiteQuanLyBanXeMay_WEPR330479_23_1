@@ -37,7 +37,9 @@
 				
                 <label for="name">Họ và Tên Người Nhận</label>
                 <input value="${hoTen }" name="name" type="text" id="name" class="form-control" placeholder="Họ và Tên" required="" autofocus="">
-                 <label for="phoneNumber">Số Điện Thoại</label>
+                <label for="name">CCCD</label>
+                <input value="${cCCD }" name="cCCD" type="text" id="name" class="form-control" placeholder="CCCD" required="" autofocus="">
+                <label for="phoneNumber">Số Điện Thoại</label>
                 <input name="phoneNumber" type="text" id="phoneNumber" class="form-control" placeholder="Số Điện Thoại" required="" autofocus="">
                 <label for="email">Email</label>
                 <input value="${email }" name="email" type="text" id="email" class="form-control" placeholder="Email" required="" autofocus="">

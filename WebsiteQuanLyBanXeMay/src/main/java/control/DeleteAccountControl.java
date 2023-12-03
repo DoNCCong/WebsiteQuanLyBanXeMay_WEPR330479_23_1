@@ -28,7 +28,7 @@ public class DeleteAccountControl extends HttpServlet {
         //dao.deleteProductBySellID(id);
         dao.deleteReviewByAccountID(id);
         dao.deleteInvoiceByAccountId(id);
-        dao.deleteTongChiTieuBanHangByUserID(id);
+//        dao.deleteTongChiTieuBanHangByUserID(id);
         dao.deleteAccount(id);
         
         request.setAttribute("mess", "Thực Hiện Xóa Tài Khoản Thành Công!");

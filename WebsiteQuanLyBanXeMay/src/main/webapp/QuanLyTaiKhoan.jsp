@@ -146,6 +146,7 @@
                   <th scope="col">Password</th>
                   <th scope="col">Là Admin</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Tổng Chi Tiêu</th>
                 </tr>
               </thead>
               <tbody>
@@ -157,6 +158,8 @@
                		<td>${o.password}</td>
                    <td>${o.isAdmin}</td>
                    <td>${o.email}</td>
+<!--                    String.format("%.0f",o.tongChiTieu) -->
+                   <td>${o.strTongChiTieu} VNĐ</td>
                    <td>
                      	   <a href="deleteAccount?id=${o.maAccount}"><button type="button" class="btn btn-danger"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button></a>
                    </td>
@@ -198,9 +201,21 @@
 			                    <input name="isAdmin" value="1" type="checkbox" class="form-check-input" id="isAdmin">
 			                    <label class="form-check-label" for="isAdmin">Là Admin</label>
                 			</div>
-                			 <div class="form-group">
+                			<div class="form-group">
                                 <label>Email</label>
                                 <input name="email" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Họ Tên</label>
+                                <input name="hoTen" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CCCD</label>
+                                <input name="cCCD" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tổng Chi Tiêu</label>
+                                <input value="0" name="tongChiTieu" type="text" class="form-control" required>
                             </div>
                             
                         </div>

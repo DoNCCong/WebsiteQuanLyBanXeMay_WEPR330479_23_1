@@ -9,7 +9,7 @@ import dao.DAO;
 import entity.Account;
 import entity.DanhMuc;
 import entity.XeMay;
-import entity.SoLuongXeDaBan;
+//import entity.SoLuongXeDaBan;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +32,7 @@ public class Top10XeMayControl extends HttpServlet {
         DAO dao = new DAO();
         List<XeMay> listAllProduct = dao.getAllProduct();
 
-        List<SoLuongXeDaBan> listTop10Product = dao.getTop10SanPhamBanChay();
+        List<XeMay> listTop10Product = dao.getTop10SanPhamBanChay();
 
         
         

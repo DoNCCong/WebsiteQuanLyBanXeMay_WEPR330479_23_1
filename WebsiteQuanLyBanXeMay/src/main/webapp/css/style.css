@@ -116,3 +116,7 @@ a .active{
       .navbar .nav-link {
         color: #fff !important;
       }
+      
+      .navbar .nav-link-admin {
+        color: rgb(255, 255, 0) !important;
+      }

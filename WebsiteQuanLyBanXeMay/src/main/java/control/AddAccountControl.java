@@ -38,13 +38,24 @@ public class AddAccountControl extends HttpServlet {
         String pass = request.getParameter("pass");
         String isAdmin = request.getParameter("isAdmin");
         String email = request.getParameter("email");
+        String hoTen = request.getParameter("hoTen");
+        String cCCD = request.getParameter("cCCD");
+        String tongChiTieu = request.getParameter("tongChiTieu");
        
+        Double DtongChiTieu = Double.parseDouble(tongChiTieu);
         
+        if(DtongChiTieu != 0)
+        {
+        	request.setAttribute("error", "Thực Hiện Thêm Tài Khoản Thất Bại! "
+        			+ "Hãy Kiểm Tra Lại Thông Tin Một Cách Cẩn Thận!");
+        }
+        else
+        {
+        	 DAO dao = new DAO();
+             dao.insertAccount(user, pass, isAdmin, email, hoTen, cCCD);
+             request.setAttribute("mess", "Thêm Tài Khoản Thành Công!");
+        }
         
-        DAO dao = new DAO();
-        dao.insertAccount(user, pass, isAdmin, email);
-        request.setAttribute("mess", "Thêm Tài Khoản Thành Công!");
-
         request.getRequestDispatcher("managerAccount").forward(request, response);
     }
 

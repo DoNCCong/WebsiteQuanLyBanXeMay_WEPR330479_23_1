@@ -51,6 +51,7 @@ public class AddControl extends HttpServlet {
         String ptiSoNen = request.getParameter("tiSoNen");
         String pdungTichBinhXang = request.getParameter("dungTichBinhXang");
         String psoLuongCon = request.getParameter("soLuongCon");
+        String psoLuongDaBan = request.getParameter("soLuongDaBan");
         
         String pgiaTien = request.getParameter("giaTien");
         String ptitle = request.getParameter("title");
@@ -62,6 +63,7 @@ public class AddControl extends HttpServlet {
         
         double dgiaTien = Double.parseDouble(pgiaTien);
         int isoLuongCon = Integer.parseInt(request.getParameter("soLuongCon"));
+        int isoLuongDaBan = Integer.parseInt(request.getParameter("soLuongDaBan"));
         
         DAO dao = new DAO();
         XeMay xeMay = dao.getXeMayBytitle(ptitle);
@@ -72,11 +74,11 @@ public class AddControl extends HttpServlet {
         }
         else
         {
-        	if(dgiaTien > 0 && isoLuongCon >= 1)
+        	if(dgiaTien > 0 && isoLuongCon >= 1 && isoLuongDaBan == 0)
             {
     			dao.insertXeMay(pname, pimage, pgiaTien, ptitle, pgioiThieu, pdanhMuc, 
     					pkhoiLuong, pdaiRongCao, pdungTichXiLanh, ptiSoNen, pdungTichBinhXang, pimage2, pimage3, pimage4, 
-    					psoLuongCon);
+    					psoLuongCon, psoLuongDaBan);
     			request.setAttribute("mess", "Thực Hiện Thêm Xe Mới Thành Công!");
             }
             else

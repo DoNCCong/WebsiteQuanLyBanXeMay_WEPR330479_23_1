@@ -136,6 +136,7 @@
                   <th scope="col">Hình Ảnh</th>
                   <th scope="col">Giá Tiền</th>
                   <th scope="col">Số Lượng Còn</th>
+                  <th scope="col">Số Lượng Đã Bán</th>
                   <th scope="col">Thao Tác</th>
                 </tr>
               </thead>
@@ -147,8 +148,9 @@
                      <td>
                           <img src="${o.hinhAnh1}" style="width: 200px;height: 120px;">
                     </td>
-                     <td>${String.format("%.0f",o.getGiaTien())} VNĐ</td>
+                     <td>${o.getStrGiaTien()} VNĐ</td>
                      <td>${o.getSoLuongCon() } Chiếc</td>
+                     <td>${o.getSoLuongDaBan() } Chiếc</td>
                       <td>
                               <a href="loadProduct?pid=${o.maXe}"><button type="button" class="btn btn-warning"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button></a>
                               <a href="delete?pid=${o.maXe}"><button type="button" class="btn btn-danger"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button></a>
@@ -158,19 +160,19 @@
               </tbody>
             </table>
             
-            <div class="clearfix">
-                    <ul class="pagination">
-                    <c:if test="${tag != 1}">
-                    	 	<li class="page-item"><a href="manager?index=${tag-1 }">Previous</a></li>
-                    	   </c:if> 	
-                    	<c:forEach begin="1" end="${endPage }" var="i">
-	                        <li class="${tag==i?"page-item active":"" }"><a href="manager?index=${i }" class="page-link">${i }</a></li>  
-                    	 </c:forEach>
-                    	 <c:if test="${tag != endPage}">
-                    	 	 <li class="page-item"><a href="manager?index=${tag+1 }" class="page-link">Next</a></li>
-                    	 	   </c:if> 	
-                    </ul>
-                </div>
+<!--             <div class="clearfix"> -->
+<!--                     <ul class="pagination"> -->
+<%--                     <c:if test="${tag != 1}"> --%>
+<%--                     	 	<li class="page-item"><a href="manager?index=${tag-1 }">Previous</a></li> --%>
+<%--                     	   </c:if> 	 --%>
+<%--                     	<c:forEach begin="1" end="${endPage }" var="i"> --%>
+<%-- 	                        <li class="${tag==i?"page-item active":"" }"><a href="manager?index=${i }" class="page-link">${i }</a></li>   --%>
+<%--                     	 </c:forEach> --%>
+<%--                     	 <c:if test="${tag != endPage}"> --%>
+<%--                     	 	 <li class="page-item"><a href="manager?index=${tag+1 }" class="page-link">Next</a></li> --%>
+<%--                     	 	   </c:if> 	 --%>
+<!--                     </ul> -->
+<!--                 </div> -->
                 
           </div>
         </div>
@@ -243,6 +245,10 @@
                             <div class="form-group">
                                 <label>Số Lượng Còn</label>
                                 <input name="soLuongCon" type="text" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>Số Lượng Đã Bán</label>
+                                <input value ="0" name="soLuongDaBan" type="text" class="form-control" >
                             </div>
                             <div class="form-group">
                                 <label>Giới Thiệu</label>

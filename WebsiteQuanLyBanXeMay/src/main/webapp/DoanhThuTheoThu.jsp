@@ -140,9 +140,9 @@
     var myPieChart = new Chart(ctxP, {
     type: 'pie',
     data: {
-    labels: ["Sunday", "Saturday", "Friday", "Thursday", "Wednesday", "Tuesday", "Monday"],
+    labels: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật"],
     datasets: [{
-    data: [${totalMoney1}, ${totalMoney7}, ${totalMoney6}, ${totalMoney5}, ${totalMoney4}, ${totalMoney3}, ${totalMoney2}],
+    data: [${totalMoney2}, ${totalMoney3}, ${totalMoney4}, ${totalMoney5}, ${totalMoney6}, ${totalMoney7}, ${totalMoney1}],
     backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#1874CD", "#CDB5CD"],
     hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#1E90FF", "#FFE1FF"]
     }]

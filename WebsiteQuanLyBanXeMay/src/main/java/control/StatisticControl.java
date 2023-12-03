@@ -56,6 +56,7 @@ public class StatisticControl extends HttpServlet {
         double totalMoney7 = dao.totalMoneyDay(7);
         Double totalMoneyDay = new Double(totalMoney1+totalMoney2+totalMoney3+totalMoney4+totalMoney5+totalMoney6+totalMoney7);
         
+        String strTotalMoneyDay = dao.chuyenDoiSo(String.format("%.0f", totalMoneyDay));
         
         double totalMoneyMonth1 = dao.totalMoneyMonth(1);
         double totalMoneyMonth2 = dao.totalMoneyMonth(2);
@@ -74,12 +75,14 @@ public class StatisticControl extends HttpServlet {
         int allProduct = dao.countAllXeMay();
         double sumAllInvoice = dao.sumAllInvoice();
         
+        String strSumAllInvoice = dao.chuyenDoiSo(String.format("%.0f", sumAllInvoice));
+        
         List<HoaDon> listAllInvoice = dao.getAllInvoice();
         List<Account> listAllAccount = dao.getAllAccount();
         
         request.setAttribute("listAllInvoice", listAllInvoice);
         request.setAttribute("listAllAccount", listAllAccount);
-        request.setAttribute("sumAllInvoice", sumAllInvoice);
+        request.setAttribute("sumAllInvoice", strSumAllInvoice);
         
         request.setAttribute("allReview", allReview);
         request.setAttribute("allProduct", allProduct);
@@ -91,7 +94,7 @@ public class StatisticControl extends HttpServlet {
         request.setAttribute("totalMoney5", totalMoney5);
         request.setAttribute("totalMoney6", totalMoney6);
         request.setAttribute("totalMoney7", totalMoney7);
-        request.setAttribute("totalMoney", totalMoneyDay.intValue());
+        request.setAttribute("totalMoney", strTotalMoneyDay);
         
         
         request.setAttribute("totalMoneyMonth1", totalMoneyMonth1);
