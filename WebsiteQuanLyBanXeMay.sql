@@ -22,7 +22,9 @@ CREATE TABLE Account (
 	password nvarchar(100) NULL,
 	isAdmin bit ,
 	email nvarchar(100) NULL,
-	tongChiTieu int check(tongChiTieu >=0),
+	hoTen nvarchar(100) NULL,
+	cCCD nvarchar(13) NULL,
+	tongChiTieu float check(tongChiTieu >=0),
 	CONSTRAINT PK_Account PRIMARY KEY CLUSTERED ([maAccount] ASC) 
 );
 
@@ -115,16 +117,16 @@ end
 go
 --Thêm Data Mẫu vào bảng Account
 insert into Account values
-('admin','admin',1,'21133021@student.hcmute.edu.vn',86960190),
-('user1','user1',0,'dung12c11b10a@gmail.com',10460212),
-('user2','user2',0,'dung11112003qnga@gmail.com',58799149),
-('user3','user3',0,'dung8b7i6i@gmail.com',42092629),
-(N'naruto', N'123456',0, N'naruto@gmail.com',63761718),
-(N'sasuke', N'123456', 0, N'sasuke@gmail.com',15973481),
-(N'sakura', N'123456', 0, N'sasuke@gmail.com',15228939),
-(N'itachi', N'123456', 0, N'sasuke@gmail.com',82496492),
-(N'kakashi', N'123456', 0, N'kakashi@gmail.com',67711980),
-(N'jiraiya', N'123456', 0, N'kakashi@gmail.com',91341825)
+('admin','admin',1,'21133021@student.hcmute.edu.vn','admin','',86960190),
+('user1','user1',0,'dung12c11b10a@gmail.com','Nguyen Trong Dung','223953474996',10460212),
+('user2','user2',0,'dung11112003qnga@gmail.com','Vu Tri Ba Ta Tro','359335136907',58799149),
+('user3','user3',0,'dung8b7i6i@gmail.com','Truyen Quan Minh Nhan','917542247563',42092629),
+(N'haruto', N'123456',0, N'naruto@gmail.com','Kirishima Haruto','928557355793',63761718),
+(N'eba', N'123456', 0, N'sasuke@gmail.com','Yuzuki Eba','190279947915',15973481),
+(N'dieppham', N'123456', 0, N'sasuke@gmail.com','Diep Pham','203068916958',15228939),
+(N'hoang', N'123456', 0, N'sasuke@gmail.com','Hoang','838368458245',82496492),
+(N'cotunguyet', N'123456', 0, N'kakashi@gmail.com','Co Tu Nguyet','138035415938',67711980),
+(N'vanhi', N'123456', 0, N'kakashi@gmail.com','Van Hi','420197124866',91341825)
 
 ---------------------------------------------------------------------------------------------------------------------------------
 go
@@ -189,6 +191,7 @@ go
 --LƯU Y: XEM LẠI MÃ ACCOUNT, MÃ XE MÁY TRƯỚC KHI THÊM
 
 --SELECT * FROM Account
+--SELECT * FROM GioHang
 --SELECT * FROM XeMay where tenXe = 'AirBlade Test 123'
 
 INSERT INTO FeedBack VALUES 
