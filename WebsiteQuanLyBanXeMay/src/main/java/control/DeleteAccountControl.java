@@ -6,8 +6,12 @@
 package control;
 
 import dao.DAO;
+import entity.GioHang;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,14 +28,26 @@ public class DeleteAccountControl extends HttpServlet {
         System.out.println("id: "+id);
         DAO dao = new DAO();
         
-        dao.deleteCartByAccountID(id);
-        //dao.deleteProductBySellID(id);
-        dao.deleteReviewByAccountID(id);
-        dao.deleteInvoiceByAccountId(id);
-//        dao.deleteTongChiTieuBanHangByUserID(id);
-        dao.deleteAccount(id);
+        int iid = Integer.parseInt(id);
         
-        request.setAttribute("mess", "Thực Hiện Xóa Tài Khoản Thành Công!");
+        List <GioHang> gioHang = dao.getGioHangBymaAccount(iid);
+        
+        if(gioHang != null)
+        {
+        	request.setAttribute("error", "Không Thể Xóa Tài Khoản Này Vì Đang Có Tồn Tại Giỏ hàng!");
+        }
+        else
+        {
+        	dao.deleteCartByAccountID(id);
+            //dao.deleteProductBySellID(id);
+            dao.deleteReviewByAccountID(id);
+            dao.deleteInvoiceByAccountId(id);
+//            dao.deleteTongChiTieuBanHangByUserID(id);
+            dao.deleteAccount(id);
+            
+            request.setAttribute("mess", "Thực Hiện Xóa Tài Khoản Thành Công!");
+        }
+        
         request.getRequestDispatcher("managerAccount").forward(request, response);
     }
     @Override

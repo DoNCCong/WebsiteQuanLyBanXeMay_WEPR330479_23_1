@@ -1403,7 +1403,7 @@ public class DAO {
     }
 
     public void singup(String user, String pass, String email, String hoTen, String cCCD) {
-        String query = "insert into Account\n"
+        String query = "insert into Account \n"
                 + "values(?,?,0,?,?,?,0)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1776,7 +1776,7 @@ public class DAO {
         		+ "hinhAnh2 =?,\r\n"
         		+ "hinhAnh3 =?,\r\n"
         		+ "hinhAnh4 =?,\r\n"
-        		+ "soLuongCon =?\r\n"
+        		+ "soLuongCon =?,\r\n"
         		+ "soLuongDaBan =?\r\n"
         		+ "where [maXe] = ?";
         try {
@@ -1812,8 +1812,8 @@ public class DAO {
     		String hoTen, String cCCD, int maAccount) {
         String query = "update Account set [username]=?,\r\n"
         		+ "[password]=?,\r\n"
-        		+ "[email]=?\r\n"
-        		+ "[hoTen]=?\r\n"
+        		+ "[email]=?,\r\n"
+        		+ "[hoTen]=?,\r\n"
         		+ "[cCCD]=?\r\n"
         		+ "where [maAccount] = ?";
         try {

@@ -134,6 +134,7 @@ public class OrderControl extends HttpServlet {
 					}
 				}
 		        double totalMoneyVAT=totalMoney;
+		        String strTotalMoneyVAT = dao.chuyenDoiSo(String.format("%.0f",totalMoneyVAT));
 		        
 		        
 		        //old code
@@ -144,6 +145,7 @@ public class OrderControl extends HttpServlet {
 				email.setSubject("Đặt mua Xe thành công từ Cửa Hàng Xe Máy SPKT");
 				StringBuilder sb = new StringBuilder();
 				sb.append("Gửi đến ").append(name).append(",<br>");
+				sb.append("<br>");
 				sb.append("Bạn vừa đặt mua Xe thành công từ Cửa Hàng Xe Máy SPKT. <br> ");
 				sb.append("Địa chỉ nhận Xe của bạn là: Số 1 Võ Văn Ngân (Địa Chỉ Cửa Hàng) <b>").append(" </b> <br>");
 				sb.append("Mã CCCD Để Xác Nhận Của Bạn Là: <b>").append(cCCD).append(" </b> <br>");
@@ -152,11 +154,12 @@ public class OrderControl extends HttpServlet {
 				for(GioHang c : list) {
 					for(XeMay p : list2) {
 						if(c.getMaXe()==p.getMaXe()) {
-							sb.append(p.getTenXe()).append("   -|-   ").append("Giá Tiền: ").append(String.format(".0%f", p.getGiaTien()).substring(2, String.format(".0%f", p.getGiaTien()).length()-7)).append(" VNĐ").append("   -|-   ").append("Số Lượng: ").append(c.getSoLuong()).append(" chiếc<br>");
+							sb.append("<b>").append(p.getTenXe()).append("</b>").append("   -|-   ").append("Giá Tiền Gốc: ").append(p.getStrGiaTien()).append(" VNĐ").append("   -|-   ").append("Số Lượng: ").append(c.getSoLuong()).append(" chiếc<br>");
 						}
 					}
 				}
-				sb.append("Tổng Tiền: ").append(String.format("%.0f",totalMoneyVAT)).append(" đ").append("<br>");
+				sb.append("Tổng Tiền Sau Khi Tính VAT và Giảm Giá 10%: <b>").append(strTotalMoneyVAT).append("</b> VNĐ").append("<br>");
+				sb.append("<br>");
 				sb.append("Cảm ơn bạn đã tin tưởng Cửa Hàng Xe Máy SPKT,<br>");
 				sb.append("Chủ Cửa Hàng");
 				

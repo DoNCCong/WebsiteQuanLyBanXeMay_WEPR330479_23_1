@@ -47,8 +47,10 @@ public class ForgotPasswordControl extends HttpServlet {
 				email.setSubject("Forgot Password Function");
 				StringBuilder sb = new StringBuilder();
 				sb.append("Gửi đến ").append(username).append(",<br>");
+				sb.append("<br>");
 				sb.append("Bạn vừa sử dụng chức năng Quên Mật Khẩu. <br> ");
 				sb.append("Mật Khẩu của bạn là: <b>").append(account.getPassword()).append(" </b> <br>");
+				sb.append("<br>");
 				sb.append("Trân trọng,<br>");
 				sb.append("Chủ Cửa Hàng");
 				

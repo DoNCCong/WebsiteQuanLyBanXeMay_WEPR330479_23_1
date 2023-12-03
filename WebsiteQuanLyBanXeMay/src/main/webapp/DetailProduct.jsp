@@ -312,10 +312,20 @@
               <div class="md-form md-outline">
                 <textarea id="form76" class="md-textarea form-control pr-6" rows="4"></textarea>
                 <label for="form76">Nhập FeedBack Của Bạn</label>
-              </div>
+              </div>     
+              
               <div class="text-right pb-2">
-                <button type="button" class="btn btn-primary" onclick="addReview(${detail.maXe})">Thêm FeedBack</button>
-              </div>
+              	<c:if test="${sessionScope.acc.username != null }">
+	                <button type="button" class="btn btn-primary" onclick="addReview(${detail.maXe})">Thêm FeedBack</button>
+	          	</c:if>
+
+				<c:if test="${sessionScope.acc.username == null }">
+					<a href="addReview" style="background-color:#1266F1; color:#FFFFFF; font:12px Roboto, sans-serif; margin:0px 0px 0px 16px; padding:17px 29px 16px; border-radius: 4px; text-decoration:none">
+                    	<span style="font-size: 14px;">Thêm FeedBack</span>
+                	</a>
+	            </c:if>
+	          </div>
+              
             </div>
             
             

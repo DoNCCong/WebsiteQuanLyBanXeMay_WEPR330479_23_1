@@ -44,8 +44,8 @@
                 <input name="password" type="password" id="password" class="form-control" value="${sessionScope.acc.password }" required="" autofocus="">
                 <label for="email">Email</label>
                 <input name="email" type="text" id="email" class="form-control" value="${sessionScope.acc.email }" required="" autofocus="">
-                <label for="hoten">Họ Tên</label>
-                <input name="hoten" type="text" id="username" class="form-control" value="${sessionScope.acc.hoTen }" required="" autofocus="">
+                <label for="hoTen">Họ Tên</label>
+                <input name="hoTen" type="text" id="username" class="form-control" value="${sessionScope.acc.hoTen }" required="" autofocus="">
                 <label for="cCCD">CCCD</label>
                 <input name="cCCD" type="text" id="username" class="form-control" value="${sessionScope.acc.cCCD }" required="" autofocus="">
                 <button type="submit" style="background-color:#2A76F2; color:#FFFFFF; font:20px Roboto, sans-serif; width: 380px; height: 45.6px"; border-radius: 5px><i class="fas fa-sign-in-alt"></i> Edit</button> 

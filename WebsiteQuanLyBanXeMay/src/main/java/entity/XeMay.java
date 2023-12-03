@@ -24,9 +24,9 @@ public class XeMay {
 
     public XeMay()
     {
-    	DAO dao = new DAO();
-		String kq= dao.chuyenDoiSo(String.format("%.0f",this.giaTien));
-		this.strGiaTien = kq;
+//    	DAO dao = new DAO();
+//		String kq= dao.chuyenDoiSo(String.format("%.0f",this.giaTien));
+//		this.strGiaTien = kq;
     }
 
 	public XeMay(int maXe, String tenXe, String hinhAnh1, Double giaTien, String title, 

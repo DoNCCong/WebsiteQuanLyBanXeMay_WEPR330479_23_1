@@ -44,11 +44,12 @@ public class SearchByAjaxHoaDon extends HttpServlet {
         	for (Account a : listAllAccount) {
         		if(o.getMaAccount() == a.getMaAccount()) {	
         			tongGia=Math.round((o.getTongTien()) * 100.0) / 100.0;
+        			String strTongGia = dao.chuyenDoiSo(String.format("%.0f", tongGia));
         	out.println("<tr>\r\n"
         			+ "                  <th scope=\"row\"></th>\r\n"
         			+ "                  <td>"+o.getMaHoaDon()+"</td>\r\n"
         			+ "                  <td>"+a.getMaAccount()+"</td>\r\n"
-        			+ "                  <td>"+String.format("%.0f", tongGia)+" VNĐ</td>\r\n"
+        			+ "                  <td>"+strTongGia+" VNĐ</td>\r\n"
         			+ "                  <td>"+o.getNgayThanhToan()+"</td> \r\n"
         			+ "                </tr>");
         		}
