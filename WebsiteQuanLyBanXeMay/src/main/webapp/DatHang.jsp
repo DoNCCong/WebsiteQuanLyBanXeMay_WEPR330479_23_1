@@ -33,12 +33,15 @@
 				  	${mess}
 				</div>
 				</c:if>
+				
+				
                 <label for="name">Họ và Tên Người Nhận</label>
-                <input name="name" type="text" id="name" class="form-control" placeholder="Họ và Tên" required="" autofocus="">
+                <input value="${hoTen }" name="name" type="text" id="name" class="form-control" placeholder="Họ và Tên" required="" autofocus="">
                  <label for="phoneNumber">Số Điện Thoại</label>
                 <input name="phoneNumber" type="text" id="phoneNumber" class="form-control" placeholder="Số Điện Thoại" required="" autofocus="">
                 <label for="email">Email</label>
-                <input name="email" type="text" id="email" class="form-control" placeholder="Email" required="" autofocus="">
+                <input value="${email }" name="email" type="text" id="email" class="form-control" placeholder="Email" required="" autofocus="">
+               
                
                 <button style="background-color:#2A76F2; color:#FFFFFF;  width:100%; heigth:200px; border-radius:10px; cursor:pointer; margin-top:20px" type="submit"><i class="fas fa-american-sign-language-interpreting"></i>ĐẶT HÀNG</button>
                 

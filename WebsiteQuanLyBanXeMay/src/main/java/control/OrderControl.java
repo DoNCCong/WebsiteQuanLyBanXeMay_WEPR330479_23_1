@@ -89,6 +89,8 @@ public class OrderControl extends HttpServlet {
 	        	dao.editTongChiTieu(maAccount, totalMoneyVAT);
 	        }
 	        
+	    request.setAttribute("hoTen", a.getUsername());    
+	    request.setAttribute("email", a.getEmail());
 	        
 		request.getRequestDispatcher("DatHang.jsp").forward(request, response);
 	}
