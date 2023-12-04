@@ -119,8 +119,8 @@
            <div class="col-sm-9 text-right">
 	           <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
 	           
-	           <a href="top5khachhang" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px; width:200px; margin-left:578px; height:50px; box-shadow: 10px 2px #8411f4;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#49494a';">
-          			<i class="fas fa-user-circle fa-fw me-3"></i><span>Top 5 khách hàng</span>
+	           <a href="top10khachhang" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px; width:200px; margin-left:578px; height:50px; box-shadow: 10px 2px #8411f4;" onmouseover="this.style.color='orange'" onmouseout="this.style.color='#49494a';">
+          			<i class="fas fa-user-circle fa-fw me-3"></i><span>Top 10 khách hàng</span>
        			</a>
 	           
 	           <form action="xuatExcelAccountControl" method="get"> 

@@ -35,15 +35,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
-@WebServlet(name = "XuatExcelTop5CustomerControl", urlPatterns = {"/xuatExcelTop5CustomerControl"})
-public class XuatExcelTop5KhachHangControl extends HttpServlet {
+@WebServlet(name = "XuatExcelTop10CustomerControl", urlPatterns = {"/xuatExcelTop10CustomerControl"})
+public class XuatExcelTop10KhachHangControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
       
         DAO dao = new DAO();
         List<Account> listAllAccount = dao.getAllAccount();
-        List<Account> listTop5KhachHang = dao.getTop5KhachHang();
+        List<Account> listTop5KhachHang = dao.getTop10KhachHang();
         
         int maximum=2147483647;
         int minimum=1;
@@ -53,7 +53,7 @@ public class XuatExcelTop5KhachHangControl extends HttpServlet {
         int randomNum =  rn.nextInt(range) + minimum;
 
         
-        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"top-5-khach-hang-"+Integer.toString(randomNum)+".xlsx");
+        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"top-10-khach-hang-"+Integer.toString(randomNum)+".xlsx");
         XSSFWorkbook workbook=new XSSFWorkbook();
         XSSFSheet workSheet=workbook.createSheet("1");
         XSSFRow row;
@@ -97,7 +97,7 @@ public class XuatExcelTop5KhachHangControl extends HttpServlet {
         file.close();
         
         request.setAttribute("mess", "Đã xuất file Excel thành công. Vào thư mục C:\\ExcelWebsiteQuanLyBanXe trên máy để kiểm tra!");
-        request.getRequestDispatcher("top5khachhang").forward(request, response); 
+        request.getRequestDispatcher("top10khachhang").forward(request, response); 
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

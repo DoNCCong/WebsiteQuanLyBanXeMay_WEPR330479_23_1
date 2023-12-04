@@ -312,9 +312,9 @@ public class DAO {
 //        return list;
 //    }
    
-    public List<Account> getTop5KhachHang() {
+    public List<Account> getTop10KhachHang() {
         List<Account> list = new ArrayList<>();
-        String query = "select top(5) *\r\n"
+        String query = "select top(10) *\r\n"
         		+ "from Account\r\n"
         		+ "order by tongChiTieu desc";
         try {

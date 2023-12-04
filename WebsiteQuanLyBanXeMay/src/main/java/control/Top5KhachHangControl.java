@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebServlet(name = "Top5KhachHangControl", urlPatterns = {"/top5khachhang"})
+@WebServlet(name = "Top10KhachHangControl", urlPatterns = {"/top10khachhang"})
 public class Top5KhachHangControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class Top5KhachHangControl extends HttpServlet {
 
         List<Account> listAllAccount = dao.getAllAccount();
 
-        List<Account> listTop5KhachHang = dao.getTop5KhachHang();
+        List<Account> listTop5KhachHang = dao.getTop10KhachHang();
 
 
         request.setAttribute("listAllAccount", listAllAccount);

@@ -100,12 +100,12 @@
     <section class="mb-4" style="margin-top:100px">
       <div class="card">
         <div class="card-header py-3">
-          <h5 class="mb-0 text-center"><strong>Top 5 khách hàng mua nhiều nhất</strong></h5>
+          <h5 class="mb-0 text-center"><strong>Top 10 khách hàng mua nhiều nhất</strong></h5>
         </div>
         
          <div class="row py-3">
            <div class="col-sm-12 text-right">
-	           <form action="xuatExcelTop5CustomerControl" method="get"> 
+	           <form action="xuatExcelTop10CustomerControl" method="get"> 
            			<button type="submit" class="mb-0 text-center btn btn-primary" style="margin-right:10px">Xuất file Excel</button> 
             	</form>    
           </div>
