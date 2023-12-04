@@ -11,6 +11,7 @@ import entity.Account;
 import entity.DanhMuc;
 import entity.HoaDon;
 import entity.XeMay;
+//import entity.TongChiTieuMuaHang;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,14 +32,18 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-@WebServlet(name = "XuatExcelAccountControl", urlPatterns = {"/xuatExcelAccountControl"})
-public class XuatExcelAccountControl extends HttpServlet {
+
+
+
+@WebServlet(name = "XuatExcelTop5CustomerControl", urlPatterns = {"/xuatExcelTop5CustomerControl"})
+public class XuatExcelTop5KhachHangControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
       
         DAO dao = new DAO();
-        List<Account> list = dao.getAllAccount();
+        List<Account> listAllAccount = dao.getAllAccount();
+        List<Account> listTop5KhachHang = dao.getTop5KhachHang();
         
         int maximum=2147483647;
         int minimum=1;
@@ -48,7 +53,7 @@ public class XuatExcelAccountControl extends HttpServlet {
         int randomNum =  rn.nextInt(range) + minimum;
 
         
-        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"tai-khoan-"+Integer.toString(randomNum)+".xlsx");
+        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"top-5-khach-hang-"+Integer.toString(randomNum)+".xlsx");
         XSSFWorkbook workbook=new XSSFWorkbook();
         XSSFSheet workSheet=workbook.createSheet("1");
         XSSFRow row;
@@ -56,68 +61,55 @@ public class XuatExcelAccountControl extends HttpServlet {
         XSSFCell cell1;
         XSSFCell cell2;
         XSSFCell cell3;
-        XSSFCell cell4;
-        XSSFCell cell5;
-        XSSFCell cell6;
-        XSSFCell cell7; 
         
         row=workSheet.createRow(0);
         cell0=row.createCell(0);
-        cell0.setCellValue("ID");
+        cell0.setCellValue("Mã Account");
         cell1=row.createCell(1);
         cell1.setCellValue("Username");
         cell2=row.createCell(2);
-        cell2.setCellValue("Password");
+        cell2.setCellValue("Email");
         cell3=row.createCell(3);
-        cell3.setCellValue("Là Admin");
-        cell4=row.createCell(4);
-        cell4.setCellValue("Email");
-        cell5=row.createCell(5);
-        cell5.setCellValue("Họ tên");
-        cell6=row.createCell(6);
-        cell6.setCellValue("CCCD");
-        cell7=row.createCell(7);
-        cell7.setCellValue("Tổng chi tiêu (VNĐ)");
+        cell3.setCellValue("Tổng chi tiêu");
+    
         
         int i=0;
         
-        for (Account acc : list) {
-        	i=i+1;
-        			 row=workSheet.createRow(i);
-        			 cell0=row.createCell(0);
-        		     cell0.setCellValue(acc.getMaAccount());
-        		     cell1=row.createCell(1);
-        		     cell1.setCellValue(acc.getUsername());
-        		     cell2=row.createCell(2);
-        		     cell2.setCellValue(acc.getPassword());
-        		     cell3=row.createCell(3);
-        		     cell3.setCellValue(acc.getIsAdmin());	
-        		     cell4=row.createCell(4);
-        		     cell4.setCellValue(acc.getEmail());
-        		     cell5=row.createCell(5);
-        		     cell5.setCellValue(acc.getHoTen());
-        		     cell6=row.createCell(6);
-        		     cell6.setCellValue(acc.getcCCD());
-        		     cell7=row.createCell(7);
-        		     cell7.setCellValue(acc.getStrTongChiTieu());
+        for (Account top5 : listTop5KhachHang) {
+        	  for (Account acc : listAllAccount) {
+        		  if(top5.getMaAccount() == acc.getMaAccount()) {
+        			  	i=i+1;
+	 	     			 row=workSheet.createRow(i);
+	 	     			 cell0=row.createCell(0);
+	 	     		     cell0.setCellValue(acc.getMaAccount());
+	 	     		     cell1=row.createCell(1);
+	 	     		     cell1.setCellValue(acc.getUsername());
+	 	     		     cell2=row.createCell(2);
+	 	     		     cell2.setCellValue(acc.getEmail());
+	 	     		     cell3=row.createCell(3);
+	 	     		     cell3.setCellValue(top5.getStrTongChiTieu());	
+        		  }
+        	  }
         }
                
         workbook.write(file);
         workbook.close();
         file.close();
         
-        request.setAttribute("mess", "Đã xuất file Excel thành công. Vào thư mục C:\\ExcelWebsiteQuanLyBanXe trên máy để xem!");
-        request.getRequestDispatcher("managerAccount").forward(request, response); 
+        request.setAttribute("mess", "Đã xuất file Excel thành công. Vào thư mục C:\\ExcelWebsiteQuanLyBanXe trên máy để kiểm tra!");
+        request.getRequestDispatcher("top5khachhang").forward(request, response); 
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }    @Override
+    }
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }    @Override
+    }
+    @Override
     public String getServletInfo() {
         return "Short description";
     }

@@ -81,6 +81,7 @@ public class XuatExcelControl extends HttpServlet {
         	for (Account a : listAllAccount) {
         		if(o.getMaAccount()==a.getMaAccount()) {
         			tongGia=Math.round((o.getTongTien()) * 100.0) / 100.0;
+        			String strTongGia = dao.chuyenDoiSo(String.format("%.0f",tongGia));
         			 row=workSheet.createRow(i);
         			 cell0=row.createCell(0);
         		     cell0.setCellValue(o.getMaHoaDon());

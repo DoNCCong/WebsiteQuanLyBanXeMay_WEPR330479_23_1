@@ -125,7 +125,7 @@ public class XuatExcelXeMayControl extends HttpServlet {
         		     cell2=row.createCell(2);
         		     cell2.setCellValue(pro.getHinhAnh1());
         		     cell3=row.createCell(3);
-        		     cell3.setCellValue(pro.getGiaTien());	
+        		     cell3.setCellValue(pro.getStrGiaTien());	
         		     cell4=row.createCell(4);
         		     cell4.setCellValue(pro.getTitle());	
         		     cell5=row.createCell(5);

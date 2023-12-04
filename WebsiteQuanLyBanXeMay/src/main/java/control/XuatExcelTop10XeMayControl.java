@@ -55,7 +55,7 @@ public class XuatExcelTop10XeMayControl extends HttpServlet {
         int randomNum =  rn.nextInt(range) + minimum;
 
         
-        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"top-10-san-pham-ban-chay-"+Integer.toString(randomNum)+".xlsx");
+        FileOutputStream file=new FileOutputStream("C:\\ExcelWebsiteQuanLyBanXe\\"+"top-10-xe-may-ban-chay-"+Integer.toString(randomNum)+".xlsx");
         XSSFWorkbook workbook=new XSSFWorkbook();
         XSSFSheet workSheet=workbook.createSheet("1");
         XSSFRow row;
@@ -105,7 +105,7 @@ public class XuatExcelTop10XeMayControl extends HttpServlet {
              		     cell2=row.createCell(2);
              		     cell2.setCellValue(pro.getHinhAnh1());
              		     cell3=row.createCell(3);
-             		     cell3.setCellValue(pro.getGiaTien());	
+             		     cell3.setCellValue(pro.getStrGiaTien());	
              		     cell4=row.createCell(4);
              		     cell4.setCellValue(pro.getTitle());	
              		     cell5=row.createCell(5);

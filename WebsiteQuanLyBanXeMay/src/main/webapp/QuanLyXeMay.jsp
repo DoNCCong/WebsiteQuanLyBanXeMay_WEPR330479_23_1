@@ -110,7 +110,7 @@
 	           <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i></a>
 	          
 	          <a href="top10" class="list-group-item list-group-item-action py-2 ripple" style="margin-bottom: 10px; width:200px; margin-left:578px; height:50px; box-shadow: 10px 2px #ef730f;" onmouseover="this.style.color='#ef730f'" onmouseout="this.style.color='#49494a';">
-          			<span>Top 10 sản phẩm</span>
+          			<span>Top 10 Xe Máy</span>
         	</a>
 	          
 	          <form action="xuatExcelProductControl" method="get"> 

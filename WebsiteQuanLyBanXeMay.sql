@@ -242,6 +242,7 @@ insert into HoaDon values
 
 --delete from HoaDon
 insert into HoaDon values
+(1, 15000000, CAST(N'2023-12-03T00:00:00.000' AS DateTime)),
 (1, 1, CAST(N'2023-12-03T00:00:00.000' AS DateTime)),
 (1, 2, CAST(N'2023-12-02T00:00:00.000' AS DateTime)),
 (1, 3, CAST(N'2023-12-01T00:00:00.000' AS DateTime)),
