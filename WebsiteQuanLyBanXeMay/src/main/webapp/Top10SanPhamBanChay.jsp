@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Statistic</title>
+<title>Top 10 Xe Máy Bán Chạy Nhất</title>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -104,7 +104,7 @@
     <section class="mb-4" style="margin-top:100px">
       <div class="card"> 
          <div class="card-header py-3">
-          	<h5 class="mb-0 text-center"><strong>Top 10 sản phẩm bán chạy nhất</strong></h5>
+          	<h5 class="mb-0 text-center"><strong>Top 10 Xe Máy bán chạy nhất</strong></h5>
         </div>
         
          <div class="row">

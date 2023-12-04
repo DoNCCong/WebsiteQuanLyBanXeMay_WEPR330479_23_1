@@ -43,7 +43,7 @@ public class XuatExcelTop10KhachHangControl extends HttpServlet {
       
         DAO dao = new DAO();
         List<Account> listAllAccount = dao.getAllAccount();
-        List<Account> listTop5KhachHang = dao.getTop10KhachHang();
+        List<Account> listTop10KhachHang = dao.getTop10KhachHang();
         
         int maximum=2147483647;
         int minimum=1;
@@ -75,9 +75,9 @@ public class XuatExcelTop10KhachHangControl extends HttpServlet {
         
         int i=0;
         
-        for (Account top5 : listTop5KhachHang) {
+        for (Account top10 : listTop10KhachHang) {
         	  for (Account acc : listAllAccount) {
-        		  if(top5.getMaAccount() == acc.getMaAccount()) {
+        		  if(top10.getMaAccount() == acc.getMaAccount()) {
         			  	i=i+1;
 	 	     			 row=workSheet.createRow(i);
 	 	     			 cell0=row.createCell(0);
@@ -87,7 +87,7 @@ public class XuatExcelTop10KhachHangControl extends HttpServlet {
 	 	     		     cell2=row.createCell(2);
 	 	     		     cell2.setCellValue(acc.getEmail());
 	 	     		     cell3=row.createCell(3);
-	 	     		     cell3.setCellValue(top5.getStrTongChiTieu());	
+	 	     		     cell3.setCellValue(top10.getStrTongChiTieu());	
         		  }
         	  }
         }

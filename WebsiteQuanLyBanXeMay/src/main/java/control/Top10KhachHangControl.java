@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "Top10KhachHangControl", urlPatterns = {"/top10khachhang"})
-public class Top5KhachHangControl extends HttpServlet {
+public class Top10KhachHangControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,12 +33,12 @@ public class Top5KhachHangControl extends HttpServlet {
 
         List<Account> listAllAccount = dao.getAllAccount();
 
-        List<Account> listTop5KhachHang = dao.getTop10KhachHang();
+        List<Account> listTop10KhachHang = dao.getTop10KhachHang();
 
 
         request.setAttribute("listAllAccount", listAllAccount);
-        request.setAttribute("listTop5KhachHang", listTop5KhachHang);
-        request.getRequestDispatcher("Top5KhachHang.jsp").forward(request, response);
+        request.setAttribute("listTop10KhachHang", listTop10KhachHang);
+        request.getRequestDispatcher("Top10KhachHang.jsp").forward(request, response);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
