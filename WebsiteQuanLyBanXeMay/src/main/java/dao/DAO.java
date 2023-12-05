@@ -28,7 +28,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-
 public class DAO {
 
     Connection conn = null;
@@ -183,7 +182,7 @@ public class DAO {
     
     public double totalMoneyMonth(int month) {
         String query = "select SUM(tongTien) from HoaDon\r\n"
-        		+ "where MONTH(ngayThanhToan)=?\r\n"
+        		+ "where MONTH(ngayThanhToan)=? and YEAR(ngayThanhToan)=YEAR(GETDATE())\r\n"
         		+ "Group by MONTH(ngayThanhToan)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -1940,8 +1939,27 @@ public class DAO {
         return ketQua;
     }
     
-    public List<Double> totalMoneyDay_Current() {
-        String query = "SELECT  sum(tongTien) from HoaDon "
+    public Double Get_Money(int index,List<List<Double>> dDoanhThuTuan) {
+    	try {
+    		int n = dDoanhThuTuan.size();
+    		for(int i=0;i<n;i++) {
+    			if((dDoanhThuTuan.get(i).get(0).intValue())==index) {
+    				return dDoanhThuTuan.get(i).get(1);
+    			}
+    		}
+    		return 0.0;
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+            System.out.println("Có lỗi");
+        }
+    	return 0.0;
+    	
+    }
+    
+    
+    public List<List<Double>> totalMoneyDay_Current() {
+        String query = "SELECT datepart(weekday,ngayThanhToan),sum(tongTien) from HoaDon "
         		+ "where DATEDIFF(day, dbo.func_ngayDauTienTrongTuan(GETDATE()), "
         		+ "ngayThanhToan) >= 0 and "
         		+ "DATEDIFF(day, dbo.func_ngayCuoiCungTrongTuan(GETDATE()), "
@@ -1950,11 +1968,15 @@ public class DAO {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             
-            List<Double> dDoanhThuTuan = new ArrayList<Double>();
+            List<List<Double>> dDoanhThuTuan = new ArrayList<List<Double>>();
+            
             rs = ps.executeQuery();
             while (rs.next()) 
             {
-            	dDoanhThuTuan.add(rs.getDouble(1));
+            	List<Double> thu = new ArrayList<Double>();
+            	thu.add(rs.getDouble(1));
+            	thu.add(rs.getDouble(2));
+            	dDoanhThuTuan.add(thu);//rs.getDouble(1));
             }
             return dDoanhThuTuan;
         } catch (Exception e) {

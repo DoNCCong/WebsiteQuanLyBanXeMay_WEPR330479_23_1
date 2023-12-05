@@ -30,18 +30,19 @@ public class DoanhThuTheoThuControl extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         DAO dao = new DAO();
         
-        List<Double> dDoanhThuTuan = dao.totalMoneyDay_Current();
+        List<List<Double>> dDoanhThuTuan = dao.totalMoneyDay_Current();
+        System.out.print(dDoanhThuTuan);
         
         int n = dDoanhThuTuan.size();
         
         
-        double totalMoney1 = dDoanhThuTuan.get(0);
-        double totalMoney2 = dDoanhThuTuan.get(1);
-        double totalMoney3 = dDoanhThuTuan.get(2);
-        double totalMoney4 = dDoanhThuTuan.get(3);
-        double totalMoney5 = dDoanhThuTuan.get(4);
-        double totalMoney6 = dDoanhThuTuan.get(5);
-        double totalMoney7 = dDoanhThuTuan.get(6);
+        double totalMoney1 = dao.Get_Money(1,dDoanhThuTuan);
+        double totalMoney2 = dao.Get_Money(2,dDoanhThuTuan);
+        double totalMoney3 = dao.Get_Money(3,dDoanhThuTuan);
+        double totalMoney4 = dao.Get_Money(4,dDoanhThuTuan);
+        double totalMoney5 = dao.Get_Money(5,dDoanhThuTuan);
+        double totalMoney6 = dao.Get_Money(6,dDoanhThuTuan);
+        double totalMoney7 = dao.Get_Money(7,dDoanhThuTuan);
         request.setAttribute("totalMoney1", totalMoney1);
         request.setAttribute("totalMoney2", totalMoney2);
         request.setAttribute("totalMoney3", totalMoney3);

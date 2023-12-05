@@ -3,7 +3,8 @@
 --Tạo database là WebsiteQuanLyBanXeMay
 
 --backup database WebsiteQuanLyBanXeMay to disk = 'F:\WebsiteQuanLyBanXeMay.bak'
-
+Create Database WebsiteQuanLyBanXeMay
+use WebsiteQuanLyBanXeMay
 ------------------------------------------------------------------------------------------------------------------------
 go
 SET ANSI_NULLS ON
@@ -396,3 +397,11 @@ group by ngayThanhToan;
 go
 select *from HoaDon
 
+go
+SELECT  datepart(weekday,ngayThanhToan),sum(tongTien) from HoaDon where DATEDIFF(day, dbo.func_ngayDauTienTrongTuan('2023-12-05'), ngayThanhToan) >= 0
+and
+							DATEDIFF(day, dbo.func_ngayCuoiCungTrongTuan('2023-12-05'), ngayThanhToan) <= 0
+group by ngayThanhToan;
+
+
+select SUM(tongTien) from HoaDon where MONTH(ngayThanhToan)=1 and YEAR(ngayThanhToan)=YEAR(GETDATE()) Group by MONTH(ngayThanhToan);
